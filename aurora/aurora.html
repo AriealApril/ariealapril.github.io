@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURORA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="loading">
+    <div class="spinner"></div>
+</div>
+
+<div id="main-content">
+    <header>
+        <div class="container">
+            <h1>ARIEAL APRIL</h1>
+            <nav>
+                <a href="https://discord.gg/z7ZakSfN7h" class="top-link">Discord</a>
+                <a href="https://www.roblox.com/groups/34958864/ARIEAL-APRIL#!/about" class="top-link">Roblox</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container video-container">
+        <!-- YouTube video -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/9yIex4k0zW8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="coming-soon">Coming Soon</div>
+    </div>
+
+    <footer style="background-color: #fff;"> <!-- Changed to white -->
+        <div class="container">
+            <img src="footer.png" alt="Footer Image" class="footer-image">
+        </div>
+    </footer>
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const loadingScreen = document.getElementById('loading');
+            loadingScreen.classList.add('hidden');
+            document.getElementById('main-content').style.filter = 'blur(0)';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }, 2000); // 2-second delay for loading screen
+    });
+</script>
+
+<style>
+    /* Reset default styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Basic styling */
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #f0f0f0;
+        overflow: hidden; /* Prevent scrolling during loading */
+    }
+
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 0;
+        text-align: center; /* Center align company name */
+    }
+
+    header h1 {
+        margin: 0; /* Remove default margin */
+    }
+
+    header nav {
+        margin-top: 10px; /* Space between title and links */
+    }
+
+    .top-link {
+        color: #fff; /* White color for links */
+        text-decoration: none;
+        margin: 0 10px;
+    }
+
+    .top-link:hover {
+        text-decoration: underline; /* Underline on hover */
+    }
+
+    /* Loading screen */
+    #loading {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 1s ease, visibility 1s ease;
+    }
+
+    .hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    /* Loading spinner */
+    .spinner {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #333; /* Darker color */
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Video container styling */
+    .video-container {
+        text-align: center;
+        margin-top: 100px; /* Space from header */
+    }
+
+    .coming-soon {
+        font-style: italic;
+        margin-top: 20px; /* Space between video and text */
+        font-size: 24px; /* Text size */
+        color: #333; /* Text color */
+    }
+
+    /* Blur effect for main content */
+    #main-content {
+        filter: blur(8px);
+        transition: filter 1s ease;
+    }
+
+    /* Footer styling */
+    footer {
+        color: #333; /* Text color in footer */
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .footer-image {
+        max-width: 100%; /* Ensure the image is responsive */
+        height: auto; /* Maintain aspect ratio */
+    }
+</style>
+
+</body>
+</html>

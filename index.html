@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="loading">
+    <div class="spinner"></div>
+</div>
+
+<div id="main-content">
+    <header>
+        <div class="container">
+            <h1>ARIEAL APRIL</h1>
+            <nav>
+                <a href="https://discord.gg/z7ZakSfN7h" class="top-link">Discord</a>
+                <a href="https://www.roblox.com/groups/34958864/ARIEAL-APRIL#!/about" class="top-link">Roblox</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="hero">
+        <div class="container">
+            <h2></h2>
+        </div>
+    </section>
+
+    <!-- New Services Section -->
+    <div class="services">
+        <h2>SERVICES</h2>
+        <div class="service-buttons">
+            <a href="aurora/aurora.html" class="service-button aurora">AURORA</a>
+            <a href="#" class="service-button specter">SPECTER</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <!-- Footer content can go here -->
+        </div>
+    </footer>
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const spinner = document.querySelector('.spinner');
+            spinner.classList.add('popout');
+            
+            // Remove blur effect after spinner pop-out animation ends
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loading');
+                loadingScreen.classList.add('hidden');
+                document.getElementById('main-content').style.filter = 'blur(0)';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+            }, 1000); // 1-second delay to match the pop-out animation
+        }, 2000); // 2-second delay for loading screen
+    });
+</script>
+
+</body>
+</html>
