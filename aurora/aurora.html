@@ -24,12 +24,23 @@
     </header>
 
     <div class="container video-container">
-        <!-- YouTube video -->
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/9yIex4k0zW8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <!-- Video slider -->
+        <div class="slider">
+            <button class="slider-btn prev-btn">&#10094;</button>
+            <div class="slides">
+                <!-- Video 1 -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/9yIex4k0zW8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <!-- Video 2 -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/GbkbNyCvyLM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <!-- Video 3 -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/BG1V3BvxpsY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <button class="slider-btn next-btn">&#10095;</button>
+        </div>
         <div class="coming-soon">Coming Soon</div>
     </div>
 
-    <footer style="background-color: #fff;"> <!-- Changed to white -->
+    <footer style="background-color: #fff;">
         <div class="container">
             <img src="footer.png" alt="Footer Image" class="footer-image">
         </div>
@@ -42,25 +53,43 @@
             const loadingScreen = document.getElementById('loading');
             loadingScreen.classList.add('hidden');
             document.getElementById('main-content').style.filter = 'blur(0)';
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
-        }, 2000); // 2-second delay for loading screen
+            document.body.style.overflow = 'auto';
+        }, 2000);
     });
+
+    // Slider functionality
+    const slides = document.querySelector('.slides');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    let currentIndex = 0;
+
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : 2; // Wrap around to the last slide
+        updateSlider();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex < 2) ? currentIndex + 1 : 0; // Wrap around to the first slide
+        updateSlider();
+    });
+
+    function updateSlider() {
+        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
 </script>
 
 <style>
-    /* Reset default styles */
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
 
-    /* Basic styling */
     body {
         font-family: Arial, sans-serif;
         line-height: 1.6;
         background-color: #f0f0f0;
-        overflow: hidden; /* Prevent scrolling during loading */
+        overflow: hidden;
     }
 
     .container {
@@ -73,28 +102,27 @@
         background-color: #333;
         color: #fff;
         padding: 10px 0;
-        text-align: center; /* Center align company name */
+        text-align: center;
     }
 
     header h1 {
-        margin: 0; /* Remove default margin */
+        margin: 0;
     }
 
     header nav {
-        margin-top: 10px; /* Space between title and links */
+        margin-top: 10px;
     }
 
     .top-link {
-        color: #fff; /* White color for links */
+        color: #fff;
         text-decoration: none;
         margin: 0 10px;
     }
 
     .top-link:hover {
-        text-decoration: underline; /* Underline on hover */
+        text-decoration: underline;
     }
 
-    /* Loading screen */
     #loading {
         position: fixed;
         width: 100%;
@@ -112,10 +140,9 @@
         visibility: hidden;
     }
 
-    /* Loading spinner */
     .spinner {
-        border: 16px solid #f3f3f3; /* Light grey */
-        border-top: 16px solid #333; /* Darker color */
+        border: 16px solid #f3f3f3;
+        border-top: 16px solid #333;
         border-radius: 50%;
         width: 120px;
         height: 120px;
@@ -127,35 +154,76 @@
         100% { transform: rotate(360deg); }
     }
 
-    /* Video container styling */
     .video-container {
         text-align: center;
-        margin-top: 100px; /* Space from header */
+        margin-top: 100px;
     }
 
     .coming-soon {
         font-style: italic;
-        margin-top: 20px; /* Space between video and text */
-        font-size: 24px; /* Text size */
-        color: #333; /* Text color */
+        margin-top: 20px;
+        font-size: 24px;
+        color: #333;
     }
 
-    /* Blur effect for main content */
     #main-content {
         filter: blur(8px);
         transition: filter 1s ease;
     }
 
-    /* Footer styling */
     footer {
-        color: #333; /* Text color in footer */
+        color: #333;
         text-align: center;
         padding: 20px 0;
     }
 
     .footer-image {
-        max-width: 100%; /* Ensure the image is responsive */
-        height: auto; /* Maintain aspect ratio */
+        max-width: 100%;
+        height: auto;
+    }
+
+    .slider {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .slides {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+
+    .slides iframe {
+        min-width: 100%;
+        max-width: 100%;
+        flex-shrink: 0;
+    }
+
+    .slider-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 24px;
+        z-index: 10;
+    }
+
+    .prev-btn {
+        left: 10px;
+    }
+
+    .next-btn {
+        right: 10px;
+    }
+
+    .slider-btn:hover {
+        background: rgba(0, 0, 0, 0.8);
     }
 </style>
 
